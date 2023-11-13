@@ -5,6 +5,7 @@ import './App.css'
 import Search from '../components/search'
 import Nav from '../components/nav'
 import PhotoList from '../components/photoList'
+import NoResults from '../components/noresults'
 
 
 
@@ -33,9 +34,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/cats" />} />
         <Route path="/cats" element={<PhotoList photos={photos} title='cats'/>} />
-        <Route path="/dogs" element={<PhotoList photos={photos} title='dogs' />} />
+        <Route path="/dogs" element={<PhotoList photos={photos} title='dogs'/>} />
         <Route path="/computers" element={<PhotoList photos={photos} title='computers'/>} />
         <Route path="/search/:query" element={<PhotoList photos={photos} />} />
+        <Route path='*' element={<Navigate to="/404" />}/>
+        <Route path='/404' element={<NoResults/>}/>
       </Routes>
     </>
   )

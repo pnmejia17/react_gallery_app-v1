@@ -9,7 +9,6 @@ const Search = ({fetchData}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     fetchData(query)
-    useNavigate(`/search?q=${query}`)
   }
   
   return (
