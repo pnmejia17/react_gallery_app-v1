@@ -9,6 +9,7 @@ const Search = ({fetchData}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     fetchData(query)
+    
   }
   
   return (
