@@ -20,7 +20,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetchData('cats')
+    fetchData(query)
   }, [query])
 
 
@@ -32,9 +32,9 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Navigate to="/cats" />} />
-        <Route path="/cats" element={<PhotoList photos={photos} />} />
-        <Route path="/dogs" element={<PhotoList photos={photos} />} />
-        <Route path="/computers" element={<PhotoList photos={photos} />} />
+        <Route path="/cats" element={<PhotoList photos={photos} title='cats'/>} />
+        <Route path="/dogs" element={<PhotoList photos={photos} title='dogs' />} />
+        <Route path="/computers" element={<PhotoList photos={photos} title='computers'/>} />
         <Route path="/search/:query" element={<PhotoList photos={photos} />} />
       </Routes>
     </>

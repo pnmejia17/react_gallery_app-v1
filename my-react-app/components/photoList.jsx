@@ -12,6 +12,7 @@ const PhotoList = props => {
     const results = props.photos
     if (results.length > 0) {
         let photos = results.map(photo =>
+
             <Photo
                 key={photo.id}
                 id={photo.id}
@@ -19,7 +20,7 @@ const PhotoList = props => {
                 secret={photo.secret} />)
         return (
             < div className="photo-container" >
-                <h2></h2>
+                <h2>{props.title}</h2>
                 <ul>
                     {photos}
                 </ul>
