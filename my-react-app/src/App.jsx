@@ -11,10 +11,10 @@ import NoResults from '../components/noresults'
 
 function App() {
   const [photos, setPhotos] = useState([])
-  // const [query, setQuery] = useState()
+  const [query, setQuery] = useState('cats')
 
 
-  const fetchData = (query = 'cats') => {
+  const fetchData = (query) => {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => setPhotos(responseData.photos.photo))
@@ -25,21 +25,25 @@ function App() {
 
 
   useEffect(() => {
-    fetchData()
-  },[])
+    fetchData(query)
+  },[query])
 
 
   console.log(photos)
 
+  const handleQuery = (updatedQuery) => {
+    setQuery(updatedQuery)
+  }
+
   return (
     <>
       <Search fetchData={fetchData}/>
-      <Nav search={fetchData}/>
+      <Nav/>
       <Routes>
         <Route path="/" element={<Navigate to="/cats" />} />
-        <Route path="/cats" element={<PhotoList photos={photos} title='cats'/>} />
-        <Route path="/dogs" element={<PhotoList photos={photos} search={fetchData} title='dogs'/>} />
-        <Route path="/computers" element={<PhotoList photos={photos} title='computers'/>} />
+        <Route path="/cats" element={<PhotoList photos={photos} title={'cats'} handleQuery={handleQuery}/>} />
+        <Route path="/dogs" element={<PhotoList photos={photos} title={'dogs'} handleQuery={handleQuery}/>}  />
+        <Route path="/computers" element={<PhotoList photos={photos} title={'computers'} handleQuery={handleQuery}/>}  />
         <Route path="/search/:query" element={<PhotoList photos={photos} />} />
         <Route path='*' element={<Navigate to="/404" />}/>
         <Route path='/404' element={<NoResults/>}/>
@@ -49,3 +53,9 @@ function App() {
 }
 
 export default App
+
+
+
+// handleQuery change funtion to update query state
+// passed into Photolsit components
+// within Photolist use query or hardcoded title = props.title 

@@ -1,14 +1,27 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Photo from "./photo";
+import { useParams } from "react-router-dom";
 
 
 
 
 // PhotoList component should take in two props
 // an array of photos, and the page title
-// paaa data down from app compinentn
+// pass data down from app component
 
 const PhotoList = props => {
+
+    const {query} = useParams()
+    
+    useEffect(() => {
+        if (query) {
+            props.handleQuery(query)
+        } else {
+            props.handleQuery(props.title)
+        }
+    }, [query, props.title])
+    
+    
     const results = props.photos
     if (results.length > 0) {
         let photos = results.map(photo =>
