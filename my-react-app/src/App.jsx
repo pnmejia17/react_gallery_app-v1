@@ -21,15 +21,10 @@ function App() {
       .catch(error => console.log("Error fetching and parsing data", error))
   }
 
-  // console.log(query)
-
 
   useEffect(() => {
     fetchData(query)
   },[query])
-
-
-  console.log(photos)
 
   const handleQuery = (updatedQuery) => {
     setQuery(updatedQuery)
