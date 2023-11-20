@@ -1,6 +1,7 @@
-import React, {useEffect} from "react";
-import Photo from "./photo";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+
+import Photo from "./photo";
 
 
 
@@ -9,10 +10,10 @@ import { useParams } from "react-router-dom";
 // an array of photos, and the page title
 // pass data down from app component
 
-const PhotoList = props => {
+const PhotoList = (props) => {
 
-    const {query} = useParams()
-    
+    const { query } = useParams()
+
     useEffect(() => {
         if (query) {
             props.handleQuery(query)
@@ -20,8 +21,8 @@ const PhotoList = props => {
             props.handleQuery(props.title)
         }
     }, [query, props.title])
-    
-    
+
+
     const results = props.photos
     if (results.length > 0) {
         let photos = results.map(photo =>

@@ -9,7 +9,7 @@ import NoResults from '../components/noresults'
 
 
 
-function App() {
+const App = () => {
   const [photos, setPhotos] = useState([])
   const [query, setQuery] = useState('cats')
 
@@ -21,27 +21,27 @@ function App() {
       .catch(error => console.log("Error fetching and parsing data", error))
   }
 
-
-  useEffect(() => {
-    fetchData(query)
-  },[query])
-
   const handleQuery = (updatedQuery) => {
     setQuery(updatedQuery)
   }
+  useEffect(() => {
+    fetchData(query)
+  }, [query])
+
+
 
   return (
     <>
-      <Search fetchData={fetchData}/>
-      <Nav/>
+      <Search handleQuery={handleQuery} fetchData={fetchData} />
+      <Nav />
       <Routes>
         <Route path="/" element={<Navigate to="/cats" />} />
-        <Route path="/cats" element={<PhotoList photos={photos} title={'cats'} handleQuery={handleQuery}/>} />
-        <Route path="/dogs" element={<PhotoList photos={photos} title={'dogs'} handleQuery={handleQuery}/>}  />
-        <Route path="/computers" element={<PhotoList photos={photos} title={'computers'} handleQuery={handleQuery}/>}  />
+        <Route path="/cats" element={<PhotoList photos={photos} title={'cats'} handleQuery={handleQuery} />} />
+        <Route path="/dogs" element={<PhotoList photos={photos} title={'dogs'} handleQuery={handleQuery} />} />
+        <Route path="/computers" element={<PhotoList photos={photos} title={'computers'} handleQuery={handleQuery} />} />
         <Route path="/search/:query" element={<PhotoList photos={photos} />} />
-        <Route path='*' element={<Navigate to="/404" />}/>
-        <Route path='/404' element={<NoResults/>}/>
+        <Route path='*' element={<Navigate to="/404" />} />
+        <Route path='/404' element={<NoResults />} />
       </Routes>
     </>
   )

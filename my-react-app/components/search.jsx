@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom"
 
 
 
-const Search = ({ fetchData }) => {
+const Search = (props) => {
   const [query, setQuery] = useState('')
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetchData(query)
+    props.handleQuery(query)
     navigate(`/search/${query}`)
 
   }
