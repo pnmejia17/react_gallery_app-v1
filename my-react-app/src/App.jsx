@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <>
-      <Search handleQuery={handleQuery} fetchData={fetchData} />
+      <Search handleQuery={handleQuery} />
       <Nav />
       <Routes>
         <Route path="/" element={<Navigate to="/cats" />} />
