@@ -52,5 +52,5 @@ export default App
 
 
 // handleQuery change funtion to update query state
-// passed into Photolsit components
+// passed into Photolist components
 // within Photolist use query or hardcoded title = props.title 
